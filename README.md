@@ -21,33 +21,55 @@ Features that will be implemented into this program will be as follows:
 * Endpoint: \initiate\
 * Parameters: Strings, Ints
 * Return Type: JSON
+
 Example Request:
   http://127.0.0.1:8000/initiate/?players=3&buy_in=200&ante=5&difficulty=easy
+  
 Example Response:
+```
   {
     "cards": ["A", "K"],
     "suits": ["spade", "spade"],
     "button": "player1"
   }
+```
 Error Handling: 400 (Required field missing, Ante higher than buy in)
 
 ### Turn
 * Endpoint name: Progression of the game depending on user's last move
-* Description: Based on the last action by the user, AI will play the game from all the other players' POV.
+* Description: Based on the last action by the user, AI will analyze your move and play the game from all the other players' POV.
 * Endpoint Type: GET
 * Endpoint: \turn\
 * Parameters: Strings, Ints
 * Return Type: JSON
+
 Example Request:
-  http://127.0.0.1:8000/turn/?move=raise&amount=200&turn=preflop
+  http://127.0.0.1:8000/turn/?move=raise&amount=100&turn=preflop
+  
 Example Response:
-Raise:
+```
   {
     "player1": "fold",
     "player2": "call",
     "player3": "raise 200",
     "turn": "preflop"
+  } 
+``` 
+
+Example Request:
+  http://127.0.0.1:8000/turn/?move=fold&turn=preflop
+  
+Example Response:
+Raise:
+```
+  {
+    result: "player 2 calls player 3's raise. The river is turned and there is a two of hearts, 
+10 of spades, J of hearts. Player 2 checks, but player 3 raises 100. Player 2 folds and player 3
+wins $500. Player 3 had 10 of hearts and 10 of diamonds, while player 2 had 4 of hearts and 5 of hearts. 
   }
+```
+
+
 ### Start Next Round
 * Endpoint name: Round
 * Description: Draft new cards and start next round
@@ -57,6 +79,7 @@ Raise:
 * Return Type: JSON
 Example Request:
     http://127.0.0.1:8000/round/?button=3&players=4
+```
   {
     "cards": ["10", "4"]
     "suits": ["hearts", "diamonds"]
@@ -65,6 +88,7 @@ Example Request:
       "player3": "call",
       "player4": "raise 10"
   }
+```
 
 ### Recommendation
 * Endpoint name: Recommendation
@@ -72,15 +96,23 @@ Example Request:
 * Endpoint Type: GET
 * Endpoint: \recommend\
 * Parameters: Strings
-* Return Type: JSON
+* Return Type: JSON 
 Example Request:
   http://127.0.0.1:8000/recommend/
 Example Response:
+```
   {
-    "recommendation" : "With a hand of Ace-King of spades and a flop of Queen, Ten, Jack of spades, you have flopped the nut   straight flush, which is an incredibly strong hand. Given that the player before you raised to 100 in an $800 pot, you       want to maximize your potential winnings.
+    "recommendation" : "With a hand of Ace-King of spades and a flop of Queen, Ten, Jack of spades,
+you have flopped the nut straight flush, which is an incredibly strong hand. Given that the player
+before you raised to 100 in an $800 pot, you want to maximize your potential winnings.
 
-  You should consider raising in this situation to build the pot further. Since you have such a strong hand, you want to       extract as much value as possible from your opponents, especially since there's a high likelihood that someone else might    have a strong hand with a spade flush or possibly even a full house. Consider raising to at least 300-400 to put pressure    on your opponents and increase the size of the pot. "
+  You should consider raising in this situation to build the pot further. Since you have such a
+strong hand, you want to extract as much value as possible from your opponents, especially since
+there's a high likelihood that someone else might have a strong hand with a spade flush or possibly
+even a full house. Consider raising to at least 300-400 to put pressure on your opponents and increase
+the size of the pot. "
   }
+```
 
 
 
