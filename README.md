@@ -55,18 +55,18 @@ Example Response:
 ```
 Error Handling: 400 (Required field missing, Ante higher than buy in)
 
-### Turn
-* Endpoint name: Progression of the game depending on user's last move
+### Move
+* Endpoint name: Move
 * Description: Based on the last action by the user, AI will analyze your move and play the game from all the other players' POV.
 * Endpoint Type: GET
-* Endpoint: \turn\
+* Endpoint: \move\
 * Parameters: Strings, Ints
 * Return Type: JSON
 
 Example Request:
-  http://127.0.0.1:8000/turn/?move=raise&amount=100&turn=preflop
-  http://127.0.0.1:8000/turn/?move=fold&turn=river
-  http://127.0.0.1:8000/turn/?move=start&button=2
+  http://127.0.0.1:8000/turn/?move=raise&amount=100&turn=0
+  http://127.0.0.1:8000/turn/?move=fold&turn=2
+  http://127.0.0.1:8000/turn/?move=start&button=2&turn=3
   
 Example Response:
 ```
