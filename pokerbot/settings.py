@@ -31,22 +31,26 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
+    'backend'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware'
 ]
 
 ROOT_URLCONF = 'pokerbot.urls'
@@ -66,6 +70,14 @@ TEMPLATES = [
         },
     },
 ]
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',  # Use the full path to the AllowAny class
+    ],
+    # Other DRF settings...
+}
 
 WSGI_APPLICATION = 'pokerbot.wsgi.application'
 
@@ -121,3 +133,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ORIGIN_ALLOW_ALL = True
+# SESSION_COOKIE_SECURE = False
+# CSRF_COOKIE_SECURE = False
+SECURE_SSL_REDIRECT = False
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000']
+ACCESS_CONTROL_ALLOW_ORIGIN = True
