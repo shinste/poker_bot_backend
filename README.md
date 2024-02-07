@@ -15,22 +15,42 @@ Features that will be implemented into this program will be as follows:
 
 ## Endpoint Documentation
 ### Game Information
-* Endpoint name: Game Information
-* Description: Initial Game Information (Number of Players, Budget,  Ante, Playstyle)
+* Endpoint name: Game Info
+* Description: Give our AI some initial game information 
+* Endpoint Type: GET (post?)
+* Endpoint: \game_info\
+* Parameters: Strings, Ints
+* Return Type: JSON
+
+Example Request:
+  http://127.0.0.1:8000/game_info/?players=3&buy_in=200&ante=5&difficulty=easy
+  
+Example Response:
+```
+  {
+    "status": "success"
+  }
+```
+Error Handling: 400 (Required field missing, Ante higher than buy in)
+
+### Initialize Cards
+* Endpoint name: Initialize
+* Description: Retrieve Cards for players and the playing turns (flop, river, turn)
 * Endpoint Type: GET
 * Endpoint: \initiate\
 * Parameters: Strings, Ints
 * Return Type: JSON
 
 Example Request:
-  http://127.0.0.1:8000/initiate/?players=3&buy_in=200&ante=5&difficulty=easy
+  http://127.0.0.1:8000/initiate/?players=3
   
 Example Response:
 ```
   {
-    "cards": ["A", "K"],
-    "suits": ["spade", "spade"],
-    "button": "player1"
+    "0": [["A", "spade"], ['7', 'spade]],
+    "1": [["10", "diamond"], ['J', 'heart]],
+    "2": [["4", "club"], ['5', 'club]],
+    "playing": [["K", "heart], ["3", "spade], ["Q", "club], ["2", "heart],["8", "diamond]]
   }
 ```
 Error Handling: 400 (Required field missing, Ante higher than buy in)
@@ -45,6 +65,8 @@ Error Handling: 400 (Required field missing, Ante higher than buy in)
 
 Example Request:
   http://127.0.0.1:8000/turn/?move=raise&amount=100&turn=preflop
+  http://127.0.0.1:8000/turn/?move=fold&turn=river
+  http://127.0.0.1:8000/turn/?move=start&button=2
   
 Example Response:
 ```
@@ -66,27 +88,6 @@ Raise:
     result: "player 2 calls player 3's raise. The river is turned and there is a two of hearts, 
 10 of spades, J of hearts. Player 2 checks, but player 3 raises 100. Player 2 folds and player 3
 wins $500. Player 3 had 10 of hearts and 10 of diamonds, while player 2 had 4 of hearts and 5 of hearts. 
-  }
-```
-
-
-### Start Next Round
-* Endpoint name: Round
-* Description: Draft new cards and start next round
-* Endpoint Type: GET
-* Endpoint: \round\
-* Parameters: String
-* Return Type: JSON
-Example Request:
-    http://127.0.0.1:8000/round/?button=3&players=4
-```
-  {
-    "cards": ["10", "4"]
-    "suits": ["hearts", "diamonds"]
-    "moves":
-      "player2": "call",
-      "player3": "call",
-      "player4": "raise 10"
   }
 ```
 
