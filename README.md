@@ -9,21 +9,23 @@ Features that will be implemented into this program will be as follows:
   - Being able to play the game while acquiring useful advice can help you get experience that will improve your real-time strategies and decisions
   - There will be variability with pots, players and antes that the user can edit in order to fit their desired game settings
 * Move Recommendation
-  - There will be a specialized recommendation that takes into account statistics, play style, and the amount of money
+  - There will be a specialized recommendation that takes into account game statistics, play style, and the amount of money
 * Summary
   - There will be a end-of-game summary giving an explanation of how the game went, how much you've deviated away from your playstyle, and how you could improve in the future.
 
+
 ## Endpoint Documentation
-### Game Information
-* Endpoint name: Game Info
-* Description: Give our AI some initial game information 
-* Endpoint Type: GET (post?)
-* Endpoint: \game_info\
-* Parameters: Strings, Ints
+
+### Session
+* Endpoint name: Session Start
+* Description: Provide Game Information (players, difficulty, etc.). It will also let the AI start recording game turns.
+* Endpoint Type: POST
+* Endpoint: \session\
+* Parameters: Strings, Integers
 * Return Type: JSON
 
 Example Request:
-  http://127.0.0.1:8000/game_info/?players=3&buy_in=200&ante=5&difficulty=easy
+  http://127.0.0.1:8000/session/?players=4&buy_in=200&ante=5&difficulty=2&button=3
   
 Example Response:
 ```
@@ -31,14 +33,15 @@ Example Response:
     "status": "success"
   }
 ```
+
 Error Handling: 400 (Required field missing, Ante higher than buy in)
 
 ### Initialize Cards
 * Endpoint name: Initialize
-* Description: Retrieve Cards for players and the playing turns (flop, river, turn)
+* Description: Randomly assign cards to players and turns flop, river, and turn. Also provide the AI with the cards.
 * Endpoint Type: GET
 * Endpoint: \initiate\
-* Parameters: Strings, Ints
+* Parameters: Integer
 * Return Type: JSON
 
 Example Request:
@@ -53,7 +56,26 @@ Example Response:
     "playing": [["K", "heart], ["3", "spade], ["Q", "club], ["2", "heart],["8", "diamond]]
   }
 ```
-Error Handling: 400 (Required field missing, Ante higher than buy in)
+Error Handling: 400 (Required field missing)
+
+???
+### Continue
+* Endpoint name: Continue
+* Description: This will prompt the AI to keep playing for the other players until it gets to the user's turn
+* Endpoint Type: GET
+* Endpoint: \continue\
+* Parameters: None
+* Return Type: JSON
+
+Example Request:
+  http://127.0.0.1:8000/continue/
+  
+Example Response:
+```
+  {
+    "player2": "fold"
+  }
+``` 
 
 ### Move
 * Endpoint name: Move
