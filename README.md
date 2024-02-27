@@ -1,7 +1,7 @@
-# Poker AI Assistant Project (Poker Bot)
+# Poker Bot (AI-Powered)
 
 ## Introduction
-This is a project I started in order to further familiarize myself with Python and web development. Since this is a smaller project, I've decided to use Flask as my framework and make use of an AI API. I thought that this project could be very interesting and useful to someone who enjoys poker, but wants to improve their statistical and strategical moves in the game. I also intend to use this program in order to improve my own playing, so I would like to make this application as practical as I can.
+This project serves as a valuable opportunity for me to deepen my understanding of both Python and web development. Opting for Django as the framework, I've integrated an AI API into the application. By focusing on poker, a game rich in statistical and strategic elements, I aim to create a platform that not only entertains but also educates users on making informed decisions during gameplay. One of my strongest motivations for embarking on this project stems from my own desire to learn the game through personal game experience. Moreover, I envision actively using this application personally to elevate my own performance in poker, proving my commitment to creating a program that is both practical and rewarding. 
 
 ## Scope
 Features that will be implemented into this program will be as follows:
