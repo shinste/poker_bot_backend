@@ -12,12 +12,13 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv()
+# load_dotenv()
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -29,6 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SESSION_COOKIE_AGE = 86400
 
 # Application definition
 
@@ -94,6 +96,7 @@ DATABASES = {
     }
 }
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -135,11 +138,26 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ORIGIN_ALLOW_ALL = True
-# SESSION_COOKIE_SECURE = False
+# ACCESS_CONTROL_ALLOW_ORIGIN = 
+# CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+]
+SESSION_COOKIE_SECURE = False
 # CSRF_COOKIE_SECURE = False
 SECURE_SSL_REDIRECT = False
 CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000']
-ACCESS_CONTROL_ALLOW_ORIGIN = True
+CORS_ALLOW_ALL_ORIGINS = True
+SESSION_COOKIE_AGE = 86400
+CORS_ALLOW_CREDENTIALS = True
+SESSION_COOKIE_HTTPONLY = False
+
+CORS_ALLOW_HEADERS = [
+    'Content-Type',
+    'Authorization',
+    'Access-Control-Allow-Credentials',
+    'Access-Control-Allow-Origin',
+    'Set-Cookie',
+    'sessionid'
+]
