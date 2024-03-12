@@ -20,6 +20,8 @@ class AIMove(CreateAPIView):
             cards = entire_data.get('cards')
             commit = entire_data.get('committed')
             commit_round = entire_data.get('commitRound')
+            difficulty = entire_data.get('difficulty')
+            best = entire_data.get('best')
             shown = 'none'
             if turn == 0:
                 turn = 'preflop'
@@ -32,18 +34,15 @@ class AIMove(CreateAPIView):
             elif turn == 3:
                 turn = 'river'
                 shown = str(cards['playing'][0:6])
-            # return JsonResponse({'move': 'Fold', 'bet_increase': 0, 'pot_add': 0})
-            # round_history = History.objects.get(session_id=session_id)
-
             client = OpenAI(
                 # defaults to os.environ.get("OPENAI_API_KEY")
-                api_key="",
+                api_key=os.environ.get("OPENAI_API_KEY"),
             )
-            prompt = f'Your cards are {cards[str(player)]}. The turn is {turn} so the cards shown are {shown}'
+            prompt = f'Your cards are {cards[str(player)]}. The turn is {turn} so the cards shown are {shown}. You have a {best}'
             response = client.chat.completions.create(
                 model="gpt-3.5-turbo",
                 messages=[
-                        {"role": "system", "content": "You are a poker player. You will receive some game information and you will make a simple move based on it"},
+                        {"role": "system", "content": f"You are a poker player with {difficulty} skill level. You will receive some game information and you will make a simple move based on it"},
                         {"role": "user", "content": f"f{prompt}, you have already committed {commit} chips in this round, and you've already committed {commit_round} this turn, and what the current bet is = {current_bet}, and your budget for this move = {budget}, DO NOT RAISE PAST THIS PLEASE. Also do not call if calling will put your budget into negative. I need you to give me the move/action of player {player} ONLY and no explanation. \
                          Here are possible move breakdowns: IF current bet is 0, these are your move options: 'check', 'raise [amount you'd like to raise]' or fold. IF current bet is 0, do not fold. IF current bet is higher than 0, here \
                          are your output options: call, fold, raise [amount you'd like to raise, must be twice the current bet]. please dont add anything else such as punctuation, context, just the move and if its a raise, then the number too. If you have a good hand, consider raising. if you have a bad hand, consider folding. DO NOT FOLD if the current bet is 0 or the current bet is the same as what you've bet this turn"}
