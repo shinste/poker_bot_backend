@@ -12,5 +12,6 @@ urlpatterns = [
     path('ai_suggest/', Suggestion.as_view(), name="suggestion"),
     path('tiebreaker/', TieBreaker.as_view(), name="tiebreaker"),
     path('ai_feedback/', Feedback.as_view(), name="feedback"),
+    path('login/', TieBreaker.as_view(), name='login'),
     path('', admin.site.urls, name="homepage"),
 ]
