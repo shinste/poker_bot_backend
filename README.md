@@ -24,7 +24,7 @@ Poker Bot allows you to play unlimited games of poker with computer AI opponents
   - There will be variability with pots, players and antes that the user can edit in order to fit their desired game settings
   - Opponent cards will be shown at the end of the game, or if you have folded. 
 * Move Recommendation
-  - Not sure what to do? Opt for the "Give me a suggestion" button that will prompt an AI to generate advice based on your hand, community cards, and opponent moves. AI isn't perfect, so it isn't impossible for the advice or given information is exactly correct!
+  - Not sure what to do? Opt for the "Give me a suggestion" button that will prompt an AI to generate advice based on your hand, community cards, and opponent moves. AI isn't perfect, so it isn't impossible for the advice or given information to be exactly correct!
 * Feed Back
   - There will be a end-of-game summary button that prompts AI to give an explanation of how the current game went, what you've played well, and how you could improve in the future.
 * Exceptions to the rules
