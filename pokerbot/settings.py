@@ -29,11 +29,11 @@ OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
 SECRET_KEY = 'django-insecure-t-j8qj2q35x=orqc0wi38*bb9rl@%*v$ps!--7m@yn-&eqxxf='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
-SESSION_COOKIE_AGE = 86400
+STATIC_ROOT = BASE_DIR/'staticfiles'
 
 # Application definition
 
