@@ -156,22 +156,32 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # ACCESS_CONTROL_ALLOW_ORIGIN = 
 # CORS_ALLOW_ALL_ORIGINS = True
 # CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',
-]
+# CORS_ORIGIN_WHITELIST = [
+#     'http://localhost:3000',
+# ]
+# SESSION_COOKIE_SECURE = False
+# CSRF_COOKIE_SECURE = False
+# SECURE_SSL_REDIRECT = False
+# # CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000']
+# CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_CREDENTIALS = True
+# SESSION_COOKIE_HTTPONLY = False
+
+# CORS_ALLOW_HEADERS = [
+#     'Content-Type',
+#     'Authorization',
+#     'Access-Control-Allow-Credentials',
+#     'Access-Control-Allow-Origin',
+#     'Set-Cookie',
+#     'sessionid'
+# ]
+CORS_ORIGIN_ALLOW_ALL = True
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
 SECURE_SSL_REDIRECT = False
-# CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000']
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = True
-SESSION_COOKIE_HTTPONLY = False
 
-CORS_ALLOW_HEADERS = [
-    'Content-Type',
-    'Authorization',
-    'Access-Control-Allow-Credentials',
-    'Access-Control-Allow-Origin',
-    'Set-Cookie',
-    'sessionid'
-]
+LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'US/Pacific'
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
