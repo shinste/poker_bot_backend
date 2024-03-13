@@ -1,1 +1,1 @@
-web: gunicorn collap.wsgi --log-file -
+web: gunicorn pokerbot.wsgi --log-file -
