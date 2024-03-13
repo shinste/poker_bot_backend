@@ -32,7 +32,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['pokerbotbackend.applikuapp.com']
+ALLOWED_HOSTS = ['https://asmqnpup9e.us-west-2.awsapprunner.com', 'pokerbotbackend.applikuapp.com']
 
 STATIC_ROOT = BASE_DIR/'staticfiles'
 
