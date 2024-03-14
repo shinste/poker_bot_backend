@@ -13,6 +13,8 @@ class Initialize(ListAPIView):
         # load_dotenv()
         if request.method == 'GET':
             players = request.GET.get('players')
+            if not players:
+                return JsonResponse({'error': 'Required Field Missing'}, status=400)
             players = int(players)
             values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
             suits = ['heart', 'diamond', 'club', 'spade']

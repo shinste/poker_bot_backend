@@ -46,9 +46,11 @@ class AIMove(CreateAPIView):
                     model="gpt-3.5-turbo",
                     messages=[
                             {"role": "system", "content": f"You are a poker player with {difficulty} skill level. You will receive some game information and you will make a simple move based on it"},
-                            {"role": "user", "content": f"f{prompt}, you have already committed {commit} chips in this round, and you've already committed {commit_round} this turn, and what the current bet is = {current_bet}, and your budget for this move = {budget}, DO NOT RAISE PAST THIS PLEASE. Also do not call if calling will put your budget into negative. I need you to give me the move/action of player {player} ONLY and no explanation. \
-                            Here are possible move breakdowns: IF current bet is 0, these are your move options: 'check', 'raise [amount you'd like to raise]' or fold. IF current bet is 0, do not fold. IF current bet is higher than 0, here \
-                            are your output options: call, fold, raise [amount you'd like to raise, must be twice the current bet]. please dont add anything else such as punctuation, context, just the move and if its a raise, then the number too. If you have a good hand, consider raising. if you have a bad hand, consider folding. DO NOT FOLD if the current bet is 0 or the current bet is the same as what you've bet this turn"}
+                            {"role": "user", "content": f"f{prompt}, you have already committed {commit} chips in this round, and you've already committed {commit_round} this turn, and what the current bet is = {current_bet}, and your budget for this move = {budget}, \
+                            DO NOT RAISE PAST THIS PLEASE. Also do not call if calling will put your budget into negative. I need you to give me the move/action of player {player} ONLY and no explanation. Here are possible move breakdowns: IF current bet is 0, these are \
+                            your move options: 'check', 'raise [amount you'd like to raise]' or fold. IF current bet is 0, do not fold. IF current bet is higher than 0, here are your output options: call, fold, raise [amount you'd like to raise, must be twice the current bet]. \
+                            If other player seem to be very passive in this round, please lean towards raising. please dont add anything else such as punctuation, context, just the move and if its a raise, then the number too. If you have a good hand, consider raising. \
+                            if you have a bad hand, consider folding. DO NOT FOLD if the current bet is 0 or the current bet is the same as what you've bet this turn"}
                         ]
                     )
                 ai_move = response.choices[0].message.content.strip()

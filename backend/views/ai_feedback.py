@@ -17,7 +17,9 @@ class Feedback(CreateAPIView):
                     model="gpt-3.5-turbo",
                     messages=[
                             {"role": "system", "content": "I am playing poker and you are analyzing how my last round went, and what I get better at"},
-                            {"role": "user", "content": f'This is my game history: {history}. These are the cards that were used: {cards}. Im player 1 and the playing cards are in the key "playing". In a maximum of 3 sentences, rate how well I played, a couple of blunders I had if I had any, and what I should improve on.'}
+                            {"role": "user", "content": f'This is my game history: {history}. These are the cards that were used: {cards}. Im player 1 \
+                            and the playing cards are in the key "playing". In a maximum of 3 sentences, rate how well I played, a couple of blunders I \
+                            had if I had any, and what I should improve on.'}
                         ]
                     )
                 ai_feedback = response.choices[0].message.content.strip()
