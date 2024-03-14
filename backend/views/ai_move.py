@@ -23,6 +23,8 @@ class AIMove(CreateAPIView):
                 commit_round = entire_data.get('commitRound')
                 difficulty = entire_data.get('difficulty')
                 best = entire_data.get('best')
+                if not player or not budget or not cards or not difficulty or not best:
+                    return JsonResponse({'errir': 'Required Field Missing'}, status=400)
                 shown = 'none'
                 if turn == 0:
                     turn = 'preflop'
@@ -50,7 +52,6 @@ class AIMove(CreateAPIView):
                         ]
                     )
                 ai_move = response.choices[0].message.content.strip()
-                move = f'Player {player} ' + ai_move
                 new_bet = 0
                 if 'raise' in ai_move.lower():
                     new_bet = float(ai_move.split(' ')[1])

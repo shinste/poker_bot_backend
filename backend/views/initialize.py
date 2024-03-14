@@ -14,7 +14,6 @@ class Initialize(ListAPIView):
         if request.method == 'GET':
             players = request.GET.get('players')
             players = int(players)
-            session_id = request.GET.get('session_id')
             values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
             suits = ['heart', 'diamond', 'club', 'spade']
             

@@ -9,6 +9,8 @@ class TieBreaker(CreateAPIView):
             hand = entire_data.get('hand')
             ties = entire_data.get('ties')
 
+            if not cards or not hand or not ties:
+                return JsonResponse({'error': 'Required Field Missing'})
 
             converting = {'J': 11,
                           'Q': 12,
