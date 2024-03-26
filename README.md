@@ -16,9 +16,8 @@ For cost purposes, the EC2 instance that hosts this app will be scheduled to run
 ### 
 * [Frontend Documentation](https://github.com/shinste/poker_bot_frontend)
 
-###
-* [Hosted Backend](https://pokerbotbackend.applikuapp.com)
-  - Hosted Through AWS (by a third party, AppLiku)
+#### Looking for my Portfolio?
+* [Portfolio](https://master--stephenshinportfolio.netlify.app/)
 
 ## Scope
 Poker Bot allows you to play unlimited games of poker with computer AI opponents. It provides adjustable settings for different levels of play and specific betting amounts. Instead of dollars, the currency used to gamble in this program are simply "Chips". Before you play, you will first be prompted to adjust the number of opponents to play, buy in ammount, big bet amount, and difficulty.
